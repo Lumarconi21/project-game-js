@@ -1,0 +1,26 @@
+body{
+    margin: 0;
+    padding: 0;
+}
+
+#board{
+background-color: rgb(241, 237, 201);
+height: 100vh;
+position: relative;
+overflow: hidden;
+}
+
+#player{
+    position: absolute;
+}
+
+#hp-img{
+    height: 100%;
+    width: 100%;
+}
+
+
+.obstacle{
+    background-color: black;
+    position: absolute;
+}
