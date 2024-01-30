@@ -4,23 +4,41 @@ body{
 }
 
 #board{
-background-color: rgb(241, 237, 201);
-height: 100vh;
+background-color: white;
+height: 800px;
+width: 1200px;
+margin: 0 auto;
 position: relative;
 overflow: hidden;
 }
 
 #player{
+    background-size: cover;
+    background-position: center;
     position: absolute;
+    display: inline-block; /* Ensures the container takes the size of its content */
+    transform: rotate(-40deg);
 }
-
-#hp-img{
-    height: 100%;
-    width: 100%;
-}
-
 
 .obstacle{
     background-color: black;
     position: absolute;
+}
+
+.prize{
+    background-color: gold;
+    position: absolute;
+}
+
+#score{
+    border: 2px solid red;
+    border-style: dashed;
+    position: absolute;
+}
+
+.score-text{
+font-size: 20px;
+font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+text-align: center;
+margin: 0 auto;
 }
