@@ -2,8 +2,8 @@
 
 class Player {
   constructor() {
-    this.width = 300;
-    this.height = 280;
+    this.width = 200;
+    this.height = 180;
     this.positionX = 30;
     this.positionY = 20;
     this.domElement = null;
@@ -25,13 +25,6 @@ class Player {
 
     const boardElement = document.getElementById("board");
     boardElement.appendChild(this.domElement);
-
-    //Adding img to the Player Element
-    /*
-    const playerImg = document.createElement("img");
-    playerImg.setAttribute("id", "hp-img");
-    playerImg.src = "./img/harry-potter-flying.png";
-    this.domElement.appendChild(playerImg); */
   }
 
   moveLeft() {
@@ -73,7 +66,7 @@ class Player {
 class Obstacle {
   constructor() {
     this.width = 100;
-    this.height = 50;
+    this.height = 150;
     this.positionX = Math.floor(Math.random() * (1200 - this.width + 1));
     this.positionY = 800;
     this.domElement = null;
@@ -88,6 +81,7 @@ class Obstacle {
     this.domElement.style.height = this.height + "px";
     this.domElement.style.left = this.positionX + "px";
     this.domElement.style.bottom = this.positionY + "px";
+    this.domElement.style.backgroundImage = "url('./img/dementor.png')";
 
     const boardElement = document.getElementById("board");
     boardElement.appendChild(this.domElement);
@@ -152,8 +146,8 @@ class Score {
 
 class Prize {
   constructor() {
-    this.width = 80;
-    this.height = 50;
+    this.width = 100;
+    this.height = 150;
     this.positionY = 800;
     this.positionX = Math.floor(Math.random() * (1200 - this.width + 1));
     this.domElement = null;
@@ -168,6 +162,7 @@ class Prize {
     this.domElement.style.height = this.height + "px";
     this.domElement.style.left = this.positionX + "px";
     this.domElement.style.bottom = this.positionY + "px";
+    this.domElement.style.backgroundImage = "url('./img/patronus.png')";
 
     const boardElement = document.getElementById("board");
     boardElement.appendChild(this.domElement);
@@ -175,6 +170,9 @@ class Prize {
   moveDown() {
     this.positionY--;
     this.domElement.style.bottom = this.positionY + "px";
+  }
+  remove() {
+    this.domElement.remove();
   }
 }
 
@@ -199,10 +197,9 @@ setInterval(function () {
       player1.positionY < prizeInstance.positionY + prizeInstance.height &&
       player1.positionY + player1.height > prizeInstance.positionY
     ) {
-      prizes.splice(index, 1).remove();
-      //remove
-      score += 10;
+      prizes.splice(index, 1);
       prizeInstance.remove();
+      score += 10;
       countingScore.innerText = score;
       console.log(countingScore, score);
     }

@@ -4,7 +4,7 @@ body{
 }
 
 #board{
-background-color: white;
+background-color: grey;
 height: 800px;
 width: 1200px;
 margin: 0 auto;
@@ -21,12 +21,14 @@ overflow: hidden;
 }
 
 .obstacle{
-    background-color: black;
     position: absolute;
+    background-size: cover;
+    background-position: center;
 }
 
 .prize{
-    background-color: gold;
+    background-size: cover;
+    background-position: cover;
     position: absolute;
 }
 
@@ -42,3 +44,4 @@ font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida San
 text-align: center;
 margin: 0 auto;
 }
+
