@@ -28,20 +28,18 @@ class Player {
   }
 
   moveLeft() {
-    const moveSize = 7;
+    const moveSize = 8;
     if (this.positionX > 0) {
       this.positionX -= moveSize;
       this.domElement.style.left = this.positionX + "px";
       this.domElement.style.backgroundImage =
         "url('./img/harry-potter-flying-left.png')";
-
-      //this.domElement.setAttribute("class", "player");
       this.domElement.setAttribute("class", "player-left");
       console.log("moving left");
     }
   }
   moveRight() {
-    const moveSize = 7;
+    const moveSize = 8;
     if (this.positionX + this.width < 1200) {
       this.positionX += moveSize;
       this.domElement.style.left = this.positionX + "px";
@@ -52,7 +50,7 @@ class Player {
     }
   }
   moveBottom() {
-    let moveDown = 7;
+    let moveDown = 8;
     if (this.positionY + this.height > 300) {
       this.positionY -= moveDown;
       this.domElement.style.bottom = this.positionY + "px";
@@ -61,7 +59,7 @@ class Player {
   }
   moveTop() {
     console.log(this.positionY);
-    let moveUp = 7;
+    let moveUp = 8;
     if (this.positionY + this.height < 795) {
       this.positionY += moveUp;
       this.domElement.style.bottom = this.positionY + "px";
@@ -73,8 +71,8 @@ class Player {
 //OBSTACLES
 class Obstacle {
   constructor() {
-    this.width = 100;
-    this.height = 150;
+    this.width = 80;
+    this.height = 100;
     this.positionX = Math.floor(Math.random() * (1200 - this.width + 1));
     this.positionY = 800;
     this.domElement = null;
@@ -102,11 +100,15 @@ class Obstacle {
 
 const player1 = new Player();
 const obstacles = [];
-
+//Set Interval para que aparezcan nuevos obstaculos
 setInterval(function () {
   const newObstacle = new Obstacle();
   obstacles.push(newObstacle);
-}, 6000);
+}, 5000);
+
+//SEt Interval para la velocidad con la q se mueven los obstáculos
+let obstacleSpeed = 30;
+let level;
 
 setInterval(function () {
   obstacles.forEach(function (obstacle) {
@@ -118,14 +120,30 @@ setInterval(function () {
       player1.positionY + player1.height > obstacle.positionY
     ) {
       console.log("game over");
-      // location.href = "/gameover.html"; //
+      location.href = "/gameover.html";
     }
   });
-}, 30);
+}, obstacleSpeed);
 
+function adjustSpeed() {
+  if (score > 100) {
+    obstacleSpeed = 20;
+    level = "Level 2";
+  } else if (score > 200) {
+    obstacleSpeed = 15;
+    level = "Level 3";
+  } else if (score > 300) {
+    obstacleSpeed = 10;
+    level = "Level 4";
+  } else {
+    obstacleSpeed = 30;
+    level = "Level 1";
+  }
+}
+setInterval(adjustSpeed);
 class Score {
   constructor() {
-    this.width = 100;
+    this.width = 80;
     this.height = 50;
     this.positionX = 1080;
     this.positionY = 10;
@@ -207,9 +225,8 @@ setInterval(function () {
     ) {
       prizes.splice(index, 1);
       prizeInstance.remove();
-      score += 10;
+      score += 30;
       countingScore.innerText = score;
-      console.log(countingScore, score);
     }
   });
 }, 30);

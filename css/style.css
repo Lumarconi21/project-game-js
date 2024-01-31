@@ -25,11 +25,11 @@ body {
 }
 
 .player {
-    transform: rotate(-40deg);
+    transform: rotate(-60deg);
 }
 
 .player-left {
-    transform: rotate(40deg);
+    transform: rotate(60deg);
 }
 
 .obstacle {
@@ -48,22 +48,23 @@ body {
     border: 2px solid red;
     border-style: dashed;
     position: absolute;
+    background-color: rgb(228, 228, 228);
 }
 
 .score-text {
     font-size: 20px;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-weight: bold;
     text-align: center;
-    margin: 0 auto;
+    /* margin: 0 auto; */
 }
 
 /*Starting Page Styles*/
 h1{
-    padding: 20px;
+    padding: 50px;
     font-size: 50px;
     color: goldenrod;
 }
-h1, h3{
+h1, h3, h4{
     text-align: center;
     font-weight: bold;
 }
@@ -104,7 +105,17 @@ color: black;
 }
 
 /*Game Over Page Styles*/
-#game-over h1 a, .play-again a{
+#game-over h1 a, .play-again a, h4 a{
     text-decoration: none;
     color: black;
+}
+.play-again a:hover{
+    color: goldenrod;
+}
+h4 a:hover{
+    color: goldenrod;
+}
+.voldemort-img{
+ text-align: center;   
+ padding-bottom: 50px;
 }
