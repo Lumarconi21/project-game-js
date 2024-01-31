@@ -15,7 +15,7 @@ class Player {
     console.log("I am the div child");
     this.domElement = document.createElement("div");
 
-    this.domElement.setAttribute("id", "player");
+    this.domElement.setAttribute("class", "player");
     this.domElement.style.width = this.width + "px";
     this.domElement.style.height = this.height + "px";
     this.domElement.style.left = this.positionX + "px";
@@ -28,23 +28,31 @@ class Player {
   }
 
   moveLeft() {
-    const moveSize = 5;
+    const moveSize = 7;
     if (this.positionX > 0) {
       this.positionX -= moveSize;
       this.domElement.style.left = this.positionX + "px";
+      this.domElement.style.backgroundImage =
+        "url('./img/harry-potter-flying-left.png')";
+
+      //this.domElement.setAttribute("class", "player");
+      this.domElement.setAttribute("class", "player-left");
       console.log("moving left");
     }
   }
   moveRight() {
-    const moveSize = 5;
+    const moveSize = 7;
     if (this.positionX + this.width < 1200) {
       this.positionX += moveSize;
       this.domElement.style.left = this.positionX + "px";
+      this.domElement.style.backgroundImage =
+        "url('./img/harry-potter-flying.png')";
+      this.domElement.setAttribute("class", "player");
       console.log("moving right");
     }
   }
   moveBottom() {
-    let moveDown = 3;
+    let moveDown = 7;
     if (this.positionY + this.height > 300) {
       this.positionY -= moveDown;
       this.domElement.style.bottom = this.positionY + "px";
@@ -53,7 +61,7 @@ class Player {
   }
   moveTop() {
     console.log(this.positionY);
-    let moveUp = 3;
+    let moveUp = 7;
     if (this.positionY + this.height < 795) {
       this.positionY += moveUp;
       this.domElement.style.bottom = this.positionY + "px";
@@ -98,7 +106,7 @@ const obstacles = [];
 setInterval(function () {
   const newObstacle = new Obstacle();
   obstacles.push(newObstacle);
-}, 3000);
+}, 6000);
 
 setInterval(function () {
   obstacles.forEach(function (obstacle) {
@@ -113,7 +121,7 @@ setInterval(function () {
       // location.href = "/gameover.html"; //
     }
   });
-}, 50);
+}, 30);
 
 class Score {
   constructor() {
@@ -186,7 +194,7 @@ let score = 0;
 setInterval(function () {
   const newPrize = new Prize();
   prizes.push(newPrize);
-}, 3500);
+}, 7000);
 
 setInterval(function () {
   prizes.forEach(function (prizeInstance, index) {
@@ -204,7 +212,7 @@ setInterval(function () {
       console.log(countingScore, score);
     }
   });
-}, 50);
+}, 30);
 
 //Adding functionality / Event Listeners
 document.addEventListener("keydown", (e) => {

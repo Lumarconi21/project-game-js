@@ -1,47 +1,110 @@
-body{
+body {
     margin: 0;
     padding: 0;
+    font-family: 'Modern Antiqua', serif;
+
 }
 
-#board{
-background-color: grey;
-height: 800px;
-width: 1200px;
-margin: 0 auto;
-position: relative;
-overflow: hidden;
+#board {
+    background-image: url("../img/background-test.jpg");
+    height: 800px;
+    width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+
 }
 
-#player{
+.player,
+.player-left {
     background-size: cover;
     background-position: center;
     position: absolute;
-    display: inline-block; /* Ensures the container takes the size of its content */
+    display: inline-block;
+    /* Ensures the container takes the size of its content */
+}
+
+.player {
     transform: rotate(-40deg);
 }
 
-.obstacle{
+.player-left {
+    transform: rotate(40deg);
+}
+
+.obstacle {
     position: absolute;
     background-size: cover;
     background-position: center;
 }
 
-.prize{
+.prize {
     background-size: cover;
     background-position: cover;
     position: absolute;
 }
 
-#score{
+#score {
     border: 2px solid red;
     border-style: dashed;
     position: absolute;
 }
 
-.score-text{
-font-size: 20px;
-font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-text-align: center;
-margin: 0 auto;
+.score-text {
+    font-size: 20px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    text-align: center;
+    margin: 0 auto;
 }
 
+/*Starting Page Styles*/
+h1{
+    padding: 20px;
+    font-size: 50px;
+    color: goldenrod;
+}
+h1, h3{
+    text-align: center;
+    font-weight: bold;
+}
+
+h3{
+    font-size: 25px;
+}
+
+.arrows{
+    display: flex;
+    justify-content: center;  
+}
+
+.arrows img{
+justify-content: center;  
+}
+
+.play{
+    padding: 20px;
+    background-color: goldenrod;
+    height: 30px;
+    width: 70px;
+    margin: auto;
+    border-radius: 10px;
+}
+.play:hover{
+    background-color: gold;
+}
+
+.play h3{
+    margin: auto;
+    
+}
+
+.play a{
+text-decoration: none;  
+color: black;  
+}
+
+/*Game Over Page Styles*/
+#game-over h1 a, .play-again a{
+    text-decoration: none;
+    color: black;
+}
