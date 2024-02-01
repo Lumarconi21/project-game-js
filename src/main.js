@@ -1,4 +1,5 @@
 //PLAYER
+
 class Player {
   constructor() {
     this.width = 155;
@@ -18,7 +19,7 @@ class Player {
     this.domElement.style.height = this.height + "px";
     this.domElement.style.left = this.positionX + "px";
     this.domElement.style.bottom = this.positionY + "px";
-    this.domElement.style.backgroundImage = "url('./img/hp-right.png')";
+    this.domElement.style.backgroundImage = "url('./img/hp-left.png')";
 
     const boardElement = document.getElementById("board");
     boardElement.appendChild(this.domElement);
@@ -28,38 +29,34 @@ class Player {
     if (this.positionX > 0) {
       this.positionX -= this.movingSpeed;
       this.domElement.style.left = this.positionX + "px";
-      this.domElement.style.backgroundImage = "url('./img/hp-left.png')";
+      this.domElement.style.backgroundImage = "url('./img/hp-right.png')";
       this.domElement.setAttribute("class", "player-left");
-      console.log("moving left");
     }
   }
   moveRight() {
     if (this.positionX + this.width < 1200) {
       this.positionX += this.movingSpeed;
       this.domElement.style.left = this.positionX + "px";
-      this.domElement.style.backgroundImage = "url('./img/hp-right.png')";
+      this.domElement.style.backgroundImage = "url('./img/hp-left.png')";
       this.domElement.setAttribute("class", "player");
-      console.log("moving right");
     }
   }
   moveBottom() {
-    if (this.positionY + this.height > 300) {
+    if (this.positionY + this.height > 150) {
       this.positionY -= this.movingSpeed;
       this.domElement.style.bottom = this.positionY + "px";
-      console.log("moving down");
     }
   }
   moveTop() {
-    console.log(this.positionY);
     if (this.positionY + this.height < 795) {
       this.positionY += this.movingSpeed;
       this.domElement.style.bottom = this.positionY + "px";
-      console.log("moving up");
     }
   }
 }
 
-//Scoring
+//SCORE
+
 class Score {
   constructor() {
     this.width = 80;
@@ -82,108 +79,31 @@ class Score {
     const boardElement = document.getElementById("board");
     boardElement.appendChild(this.domElement);
 
-    const scoreDiv = document.getElementById("score"); //Accesing my score div
+    const scoreDiv = document.getElementById("score");
     const scoreText = document.createElement("p");
     scoreText.setAttribute("class", "score-text");
     scoreDiv.appendChild(scoreText);
+
+    const textLevel = document.createElement("p");
+    textLevel.setAttribute("class", "level-text");
+
+    const levelText = document.createElement("h1");
+    levelText.setAttribute("class", "level-text");
+    levelText.innerText = "Level 1";
+    scoreDiv.appendChild(levelText);
   }
 }
 
 //Patronus
 const prizes = [];
-//Every time prize & player collides, score increments: +10;
+
+//Every time prize & player collides, score increments: +30;
 const displayScore = new Score();
 
 const countingScore = displayScore.domElement.querySelector(".score-text");
 let score = 0;
 
-setInterval(function () {
-  const newPrize = new Prize();
-  prizes.push(newPrize);
-}, 7000);
-
-//OBSTACLES --> Dementors
-class Obstacle {
-  constructor() {
-    this.width = 80;
-    this.height = 100;
-    this.positionX = Math.floor(Math.random() * (1200 - this.width + 1));
-    this.positionY = 800;
-    this.domElement = null;
-
-    this.createDomElement();
-  }
-  createDomElement() {
-    this.domElement = document.createElement("div");
-
-    this.domElement.setAttribute("class", "obstacle");
-    this.domElement.style.width = this.width + "px";
-    this.domElement.style.height = this.height + "px";
-    this.domElement.style.left = this.positionX + "px";
-    this.domElement.style.bottom = this.positionY + "px";
-    this.domElement.style.backgroundImage = "url('./img/dementor.png')";
-
-    const boardElement = document.getElementById("board");
-    boardElement.appendChild(this.domElement);
-  }
-  moveDown() {
-    this.positionY--;
-    this.domElement.style.bottom = this.positionY + "px";
-  }
-}
-
-const player1 = new Player();
-const obstacles = [];
-let intervals = 4000;
-//Set Interval para que aparezcan nuevos obstaculos
-setInterval(function () {
-  const newObstacle = new Obstacle();
-  obstacles.push(newObstacle);
-}, intervals);
-
-//SEt Interval para la velocidad con la q se mueven los obstáculos
-let obstacleSpeed = 30;
-let level;
-
-setInterval(function () {
-  obstacles.forEach(function (obstacle) {
-    obstacle.moveDown();
-    if (
-      player1.positionX < obstacle.positionX + obstacle.width &&
-      player1.positionX + player1.width > obstacle.positionX &&
-      player1.positionY < obstacle.positionY + obstacle.height &&
-      player1.positionY + player1.height > obstacle.positionY
-    ) {
-      console.log("game over");
-      location.href = "./game-over.html";
-    }
-  });
-}, obstacleSpeed);
-
-function adjustSpeed() {
-  if (score > 50) {
-    obstacleSpeed = 20;
-    intervals = 2000;
-    level = "Level 2";
-    console.log(level);
-  } else if (score > 100) {
-    obstacleSpeed = 10;
-    intervals = 1500;
-    level = "Level 3";
-    console.log("level 3");
-  } else if (score > 300) {
-    obstacleSpeed = 7;
-    level = "Level 4";
-    console.log("level 4");
-    intervals = 1000;
-  } else if (score > 400) {
-    obstacleSpeed = 5;
-    intervals = 500;
-    level = "Level 5";
-    console.log(level);
-  }
-}
-setInterval(adjustSpeed, 3000);
+//PRIZES
 
 class Prize {
   constructor() {
@@ -230,9 +150,103 @@ setInterval(function () {
       prizeInstance.remove();
       score += 30;
       countingScore.innerText = score;
+      updateGameParameters(score); //ISsue
     }
   });
-}, 30);
+}, 20);
+
+setInterval(function () {
+  const newPrize = new Prize();
+  prizes.push(newPrize);
+}, 4000);
+
+//OBSTACLES --> Dementors
+class Obstacle {
+  constructor() {
+    this.width = 80;
+    this.height = 100;
+    this.positionX = Math.floor(Math.random() * (1200 - this.width + 1));
+    this.positionY = 800;
+    this.domElement = null;
+
+    this.createDomElement();
+  }
+  createDomElement() {
+    this.domElement = document.createElement("div");
+
+    this.domElement.setAttribute("class", "obstacle");
+    this.domElement.style.width = this.width + "px";
+    this.domElement.style.height = this.height + "px";
+    this.domElement.style.left = this.positionX + "px";
+    this.domElement.style.bottom = this.positionY + "px";
+    this.domElement.style.backgroundImage = "url('./img/dementor.png')";
+
+    const boardElement = document.getElementById("board");
+    boardElement.appendChild(this.domElement);
+  }
+  moveDown() {
+    this.positionY--;
+    this.domElement.style.bottom = this.positionY + "px";
+  }
+}
+
+const player1 = new Player();
+const obstacles = [];
+let intervals = 3000;
+//Set Interval para que aparezcan nuevos obstaculos
+function createObstacle() {
+  const newObstacle = new Obstacle();
+  obstacles.push(newObstacle);
+}
+
+//SEt Interval para la velocidad con la q se mueven los obstáculos
+let obstacleSpeed = 20;
+let level = "Level 1";
+
+let obstacleInterval = setInterval(createObstacle, intervals);
+
+setInterval(function () {
+  obstacles.forEach(function (obstacle) {
+    obstacle.moveDown();
+    if (
+      player1.positionX < obstacle.positionX + obstacle.width &&
+      player1.positionX + player1.width > obstacle.positionX &&
+      player1.positionY < obstacle.positionY + obstacle.height &&
+      player1.positionY + player1.height > obstacle.positionY
+    ) {
+      console.log("game over");
+      location.href = "./game-over.html";
+    }
+  });
+}, obstacleSpeed);
+
+function updateGameParameters(score) {
+  // Update obstacle speed and intervals based on the score
+  if (score >= 400) {
+    obstacleSpeed = 5;
+    level = "Level 5";
+    intervals = 1000;
+    console.log(score, level);
+  } else if (score >= 300) {
+    obstacleSpeed = 10;
+    level = "Level 4";
+    intervals = 1500;
+    console.log(score, level);
+  } else if (score >= 200) {
+    obstacleSpeed = 15;
+    level = "Level 3";
+    intervals = 2000;
+  } else if (score >= 100) {
+    obstacleSpeed = 18;
+    level = "Level 2";
+    intervals = 2500;
+  }
+
+  document.getElementsByClassName("level-text").innerText = level;
+
+  clearInterval(obstacleInterval);
+  obstacleInterval = setInterval(createObstacle, intervals);
+}
 
 //Adding functionality / Event Listeners
 document.addEventListener("keydown", (e) => {
