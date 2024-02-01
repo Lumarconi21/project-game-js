@@ -7,7 +7,7 @@ body {
 
 #board {
     background-image: url('../img/hogwarts-bg.png');
-    transition: background-image 0.2s ease-out;
+    transition: background-image 3s ease-in-out;
     height: 800px;
     width: 1200px;
     margin: 0 auto;
@@ -24,19 +24,7 @@ body {
     position: absolute;
     display: inline-block;
 }
-/* 
-.player {
-    transform: rotate(-60deg);
-    overflow: visible; 
-    position: relative; 
 
-} 
-
-.player-left {
-    transform: rotate(60deg);
-}
-
-*/
 .obstacle {
     position: absolute;
     background-size: cover;
@@ -50,22 +38,26 @@ body {
 }
 
 #score {
-    border: 2px solid red;
-    border-style: dashed;
     position: absolute;
     background-color: rgb(228, 228, 228);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .score-text {
     font-size: 20px;
     font-weight: bold;
     text-align: center;
-    /* margin: 0 auto; */
+    margin: 0;
 }
 
-.level-text{
- color:grey;
-text-align: center; 
+#level{
+    font-weight: bold;
+    text-align: center;
+    font-size: 25px;
+    position:absolute;
+    color: grey;
 }
 
 /*Starting Page Styles*/
