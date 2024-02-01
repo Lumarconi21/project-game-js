@@ -15,23 +15,27 @@ body {
 
 }
 
+
 .player,
 .player-left {
     background-size: cover;
     background-position: center;
     position: absolute;
     display: inline-block;
-    /* Ensures the container takes the size of its content */
 }
-
+/* 
 .player {
     transform: rotate(-60deg);
-}
+    overflow: visible; 
+    position: relative; 
+
+} 
 
 .player-left {
     transform: rotate(60deg);
 }
 
+*/
 .obstacle {
     position: absolute;
     background-size: cover;
