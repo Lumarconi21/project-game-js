@@ -6,7 +6,7 @@ body {
 }
 
 #board {
-    background-image: url("../img/background-test.jpg");
+    background-image: url('../img/hogwarts-bg.png');
     height: 800px;
     width: 1200px;
     margin: 0 auto;
@@ -62,13 +62,18 @@ body {
     /* margin: 0 auto; */
 }
 
+.level-text{
+ color:grey;
+text-align: center; 
+}
+
 /*Starting Page Styles*/
-h1{
+.game-title{
     padding: 50px;
     font-size: 50px;
     color: goldenrod;
 }
-h1, h3, h4{
+.game-title, h3, h4{
     text-align: center;
     font-weight: bold;
 }

@@ -84,12 +84,9 @@ class Score {
     scoreText.setAttribute("class", "score-text");
     scoreDiv.appendChild(scoreText);
 
-    const textLevel = document.createElement("p");
-    textLevel.setAttribute("class", "level-text");
-
     const levelText = document.createElement("h1");
     levelText.setAttribute("class", "level-text");
-    levelText.innerText = "Level 1";
+    //levelText.innerText = "Level 1";
     scoreDiv.appendChild(levelText);
   }
 }
@@ -225,29 +222,44 @@ function updateGameParameters(score) {
   if (score >= 400) {
     obstacleSpeed = 5;
     level = "Level 5";
-    intervals = 1000;
-    console.log(score, level);
+    intervals = 2000;
+    changeLevelBackground();
   } else if (score >= 300) {
     obstacleSpeed = 10;
     level = "Level 4";
-    intervals = 1500;
-    console.log(score, level);
+    intervals = 2000;
+    changeLevelBackground();
   } else if (score >= 200) {
     obstacleSpeed = 15;
     level = "Level 3";
     intervals = 2000;
+    changeLevelBackground();
   } else if (score >= 100) {
     obstacleSpeed = 18;
     level = "Level 2";
     intervals = 2500;
+    changeLevelBackground();
   }
 
   document.getElementsByClassName("level-text").innerText = level;
+  console.log(level);
 
   clearInterval(obstacleInterval);
   obstacleInterval = setInterval(createObstacle, intervals);
 }
 
+function changeLevelBackground() {
+  const boardElement = document.getElementById("board");
+  if (level === "Level 2") {
+    boardElement.style.backgroundImage = "url('./img/background-test.jpg')";
+  } else if (level === "Level 3") {
+    boardElement.style.backgroundImage = "url('./img/background-test-2.jpg')";
+  } else if (level === "Level 4") {
+    boardElement.style.backgroundImage = "url('./img/snowy-bg.jpg')";
+  } else if (level === "Level 5") {
+    boardElement.style.backgroundImage = "url('./img/quidditch-bg.jpg')";
+  }
+}
 //Adding functionality / Event Listeners
 document.addEventListener("keydown", (e) => {
   if (e.code === "ArrowLeft") {
