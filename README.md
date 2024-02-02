@@ -11,8 +11,6 @@ First project at Ironhack's Web Development bootcamp.
 
 https://lumarconi21.github.io/project-game-js/
 
-### Catch all the patronuses you can!!
+<img width="600px" height="400px" src="./img/screenshot-2.png">
 
-<img src="./img/screenshot-2.png">
-
-<img src="./img/screenshot-1.png">
+<img width="600px" height="400px" src="./img/screenshot-1.png">
