@@ -4,7 +4,7 @@ Patronus vs. Dementor
 
 ## Description
 
-Game built with JavaScript DOM Manipulation.
+Game built with Vainilla JS.
 
 ## Demo
 
