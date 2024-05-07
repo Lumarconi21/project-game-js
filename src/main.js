@@ -1,5 +1,4 @@
 //PLAYER
-
 class Player {
   constructor() {
     this.width = 155;
@@ -56,7 +55,6 @@ class Player {
 }
 
 //SCORE
-
 class Score {
   constructor() {
     this.width = 80;
@@ -87,14 +85,13 @@ class Score {
   }
 }
 
-//Prices & Score update
+//Patronus & Score update
 const prizes = [];
 const displayScore = new Score();
 const countingScore = displayScore.domElement.querySelector(".score-text");
 let score = 0;
 
 //PRIZES
-
 class Prize {
   constructor() {
     this.width = 100;
@@ -127,7 +124,7 @@ class Prize {
   }
 }
 
-//Price intervals and speed
+//Prizes intervals and speed
 setInterval(function () {
   prizes.forEach(function (prizeInstance, index) {
     prizeInstance.moveDown();
@@ -300,7 +297,7 @@ function changeLevelBackground() {
   }
 }
 
-//Adding functionality / Event Listeners
+//Add moves to player
 document.addEventListener("keydown", (e) => {
   if (e.code === "ArrowLeft") {
     player1.moveLeft();
